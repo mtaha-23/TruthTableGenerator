@@ -23,7 +23,6 @@ public:
 	Node(Node* obj);
 	Node(string data, Node* ptr);
 	Node(int size = 0, string premise = "");
-	int& operator[](int index);
 	void printNode();
 };
 
