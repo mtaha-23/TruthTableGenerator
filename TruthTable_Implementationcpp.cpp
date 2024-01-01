@@ -51,12 +51,6 @@ Node::Node(int size, string premise)
 	next = nullptr;
 }
 
-int& Node::operator[](int index)
-{
-	if (index >= 0 && index < size)
-		return arr[index];
-}
-
 void Node::printNode()
 {
 	cout << "\n----------------------\n";
@@ -387,7 +381,7 @@ void TruthTable::printTruthTable(Node* result)
 					if (curr->premise.length() == len)
 					{
 						cout << setw(length);
-						cout << curr->operator[](i) << " ";
+						cout << curr->arr[i] << " ";
 					}
 				}
 				curr = curr->next;
@@ -396,7 +390,7 @@ void TruthTable::printTruthTable(Node* result)
 
 		//print result array with different color
 		greenColor();
-		cout << setw(resultLength) << result->operator[](i) << " ";
+		cout << setw(resultLength) << result->arr[i] << " ";
 		resetColor();
 
 
@@ -619,10 +613,10 @@ Node* TruthTable::AND(Node* op1, Node* op2, string resultPremis)
 	//array's of op1 and op2 are performed AND operation logic and the result is stored in newResultArray
 	for (int i = 0; i < possibleCombinations; i++)
 	{
-		if (op1->operator[](i) == 1 && op2->operator[](i) == 1)
-			newResultArray->operator[](i) = 1;
+		if (op1->arr[i] == 1 && op2->arr[i] == 1)
+			newResultArray->arr[i] = 1;
 		else
-			newResultArray->operator[](i) = 0;
+			newResultArray->arr[i] = 0;
 	}
 
 	//the node with the result is than added to the linked list of truth table which contains all premises
@@ -641,10 +635,10 @@ Node* TruthTable::OR(Node* op1, Node* op2, string resultPremis)
 	//array's of op1 and op2 are performed OR operation logic and the result is stored in newResultArray
 	for (int i = 0; i < possibleCombinations; i++)
 	{
-		if (op1->operator[](i) == 1 || op2->operator[](i) == 1)
-			newResultArray->operator[](i) = 1;
+		if (op1->arr[i] == 1 || op2->arr[i] == 1)
+			newResultArray->arr[i] = 1;
 		else
-			newResultArray->operator[](i) = 0;
+			newResultArray->arr[i] = 0;
 	}
 
 	//the node with the result is than added to the linked list of truth table which contains all premises
@@ -663,10 +657,10 @@ Node* TruthTable::NOT(Node* op1, string resultPremis)
 	//array's of op1 and op2 are performed NOT operation logic and the result is stored in newResultArray
 	for (int i = 0; i < possibleCombinations; i++)
 	{
-		if (op1->operator[](i) == 1)
-			newResultArray->operator[](i) = 0;
+		if (op1->arr[i] == 1)
+			newResultArray->arr[i] = 0;
 		else
-			newResultArray->operator[](i) = 1;
+			newResultArray->arr[i] = 1;
 	}
 
 	//the node with the result is than added to the linked list of truth table which contains all premises
@@ -685,10 +679,10 @@ Node* TruthTable::IMPLICATION(Node* op1, Node* op2, string resultPremis)
 	//array's of op1 and op2 are performed IMPLICATION operation logic and the result is stored in newResultArray
 	for (int i = 0; i < possibleCombinations; i++)
 	{
-		if (op1->operator[](i) == 1 && op2->operator[](i) == 0)
-			newResultArray->operator[](i) = 0;
+		if (op1->arr[i] == 1 && op2->arr[i] == 0)
+			newResultArray->arr[i] = 0;
 		else
-			newResultArray->operator[](i) = 1;
+			newResultArray->arr[i] = 1;
 	}
 
 	//the node with the result is than added to the linked list of truth table which contains all premises
@@ -707,10 +701,10 @@ Node* TruthTable::BIIMPLICATION(Node* op1, Node* op2, string resultPremis)
 	//array's of op1 and op2 are performed BIIMPLICATION operation logic and the result is stored in newResultArray
 	for (int i = 0; i < possibleCombinations; i++)
 	{
-		if (op1->operator[](i) == op2->operator[](i))
-			newResultArray->operator[](i) = 1;
+		if (op1->arr[i] == op2->arr[i])
+			newResultArray->arr[i] = 1;
 		else
-			newResultArray->operator[](i) = 0;
+			newResultArray->arr[i] = 0;
 	}
 
 	//the node with the result is than added to the linked list of truth table which contains all premises
@@ -729,10 +723,10 @@ Node* TruthTable::XOR(Node* op1, Node* op2, string resultPremis)
 	//array's of op1 and op2 are performed XOR operation logic and the result is stored in newResultArray
 	for (int i = 0; i < possibleCombinations; i++)
 	{
-		if (op1->operator[](i) == op2->operator[](i))
-			newResultArray->operator[](i) = 0;
+		if (op1->arr[i] == op2->arr[i])
+			newResultArray->arr[i] = 0;
 		else
-			newResultArray->operator[](i) = 1;
+			newResultArray->arr[i] = 1;
 	}
 
 	//the node with the result is than added to the linked list of truth table which contains all premises
